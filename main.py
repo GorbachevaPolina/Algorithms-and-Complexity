@@ -1,5 +1,8 @@
 import math
 import random
+import time
+import numpy as np
+import matplotlib.pyplot as plt
 
 
 def generate_digraph(v, e, max_weight):
@@ -53,6 +56,15 @@ def generate_graph(v, e, max_weight):
     return graph
 
 
+def floyd(v, graph):
+    for k in range(0, v):
+        for i in range(0, v):
+            for j in range(0, v):
+                if i != j:
+                    graph[i][j] = min(graph[i][j], graph[i][k] + graph[k][j])
+    return graph
+
+
 print('input number of vertices: ')
 number_of_vertices = int(input())
 print('input number of edges: ')
@@ -74,4 +86,9 @@ else:
             print('too many edges')
         else:
             graph = generate_graph(number_of_vertices, number_of_edges, max_weight)
-print(graph)
+print('generated graph: ', graph)
+start = time.time()
+matrix = floyd(number_of_vertices, graph)
+end = time.time() - start
+print('result of the algorythm: ', matrix)
+print('time: ', end)
