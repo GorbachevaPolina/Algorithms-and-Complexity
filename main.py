@@ -1,13 +1,11 @@
 import math
 import random
 import time
-import numpy as np
-import matplotlib.pyplot as plt
 
 
 def generate_digraph(v, e, max_weight):
     graph = []
-    for i in range(0, v):
+    for i in range(0, v):  # инициализация матрицы смежности
         graph.append([])
         for j in range(0, v):
             if i == j:
@@ -18,7 +16,7 @@ def generate_digraph(v, e, max_weight):
     for i in range(0, v-1):  # для связности графа
         graph[i][i+1] = random.randint(1, max_weight)
 
-    if v-1 < e:
+    if v-1 < e:  # добавляем недостающие ребра
         for i in range(v-1, e):
             row = random.randint(0, max_weight) % v
             col = random.randint(0, max_weight) % v
@@ -34,7 +32,7 @@ def generate_digraph(v, e, max_weight):
 
 def generate_graph(v, e, max_weight):
     graph = []
-    for i in range(0, v):
+    for i in range(0, v):  # инициализация матрицы смежности
         graph.append([])
         for j in range(0, v):
             if i == j:
@@ -69,8 +67,7 @@ print('input number of vertices: ')
 number_of_vertices = int(input())
 print('input number of edges: ')
 number_of_edges = int(input())
-print('input max weight of edges: ')
-max_weight = int(input())
+max_weight = 100
 print('press 1 for directed weighted graph, press 2 for weighted graph: ')
 graph_class = input()
 if number_of_edges < number_of_vertices - 1:
